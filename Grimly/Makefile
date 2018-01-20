@@ -29,21 +29,21 @@ LFT_LINK = -L $(LFT) -l ft
 all: $(LFT_LIB) $(NAME)
 
 $(OFILES):
-	gcc $(CFLAGS) -c -I$(INCLUDES) $(LFT_INC) $(CFILES)
+	@gcc $(CFLAGS) -c -I$(INCLUDES) $(LFT_INC) $(CFILES)
 
 $(LFT_LIB):
-	make -C $(LFT)
+	@make -C $(LFT)
 
 $(NAME): $(OFILES)
-	gcc $(CFLAGS) $(OFILES) $(LFT_LINK) -o $(NAME)
+	@gcc $(CFLAGS) $(OFILES) $(LFT_LINK) -o $(NAME)
 
 clean:
-	make -C $(LFT) clean
-	$(RM) $(OFILES)
+	@make -C $(LFT) clean
+	@$(RM) $(OFILES)
 
 fclean: clean
-	make -C $(LFT) fclean
-	$(RM) $(NAME)
+	@make -C $(LFT) fclean
+	@$(RM) $(NAME)
 
 re: fclean all
 
