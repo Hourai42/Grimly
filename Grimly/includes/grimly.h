@@ -19,11 +19,35 @@ typedef struct s_key
     char *key;
     int row;
     int column;
-    char *arr;
+    char **arr;
+    int startx;
+    int starty;
 }               t_key;
+
+typedef struct s_rs
+{
+    int run;
+    int n;
+    int exits;
+    int entrance;
+}   t_rs;
+
+typedef struct s_bfs
+{
+    int x;
+    int y;
+    struct s_bfs *parent;
+}               t_bfs;
+
+typedef struct s_queue
+{
+    struct s_bfs *node;
+    struct s_queue *next;
+}               t_queue;
 
 int main(int argc, char **argv);
 int dup_check(char *str);
-
+int validmaze(int fd);
+int solvemaze(t_key *key);
 
 #endif
