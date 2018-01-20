@@ -185,7 +185,6 @@ int validmaze(int fd)
             return (-1);
     if (s->exits < 1 || s->entrance != 1)
         return (-1);
-    free(s);
     if (solvemaze(key) == -1)
        return (-1);
     return (0);

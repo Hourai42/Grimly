@@ -41,22 +41,26 @@ static t_bfs   *popQueue(t_queue **queue)
 }
 
 /* This is putting to the end of the queue. */
-static void    pushQueue(t_bfs *node, t_queue **queue)
+static void    pushQueue(t_bfs *node, t_queue **queue, t_key *key)
 {
     t_queue *newTail;
 
-    if (*queue == NULL)
-    {    
-        *queue = malloc(sizeof(t_queue));
-        (*queue)->next = NULL;
-        (*queue)->node = node;
-    }
-    else
+    if (key->arr[node->y][node->x] > 0)
     {
-        newTail = malloc(sizeof(t_queue));
-        newTail->next = *queue;
-        newTail->node = node;
-        *queue = newTail;
+        if (*queue == NULL)
+        {    
+            *queue = malloc(sizeof(t_queue));
+            (*queue)->next = NULL;
+            (*queue)->node = node;
+        }
+        else
+        {
+            newTail = malloc(sizeof(t_queue));
+            newTail->next = *queue;
+            newTail->node = node;
+            *queue = newTail;
+        }
+        key->arr[node->y][node->x] *= -1;
     }    
 }
 
@@ -80,7 +84,7 @@ t_bfs   *genNorth(t_queue **queue, t_key *key, t_bfs *item)
             FUCKYEAH->parent = item;
             FUCKYEAH->y = item->y - 1;
             FUCKYEAH->x = item->x;
-            pushQueue(FUCKYEAH, queue);
+            pushQueue(FUCKYEAH, queue, key);
         }
     }
     return (NULL);
@@ -106,7 +110,7 @@ t_bfs   *genWest(t_queue **queue, t_key *key, t_bfs *item)
             FUCKYEAH->parent = item;
             FUCKYEAH->y = item->y;
             FUCKYEAH->x = item->x - 1;
-            pushQueue(FUCKYEAH, queue);
+            pushQueue(FUCKYEAH, queue, key);
         }
     }
     return (NULL);
@@ -132,7 +136,7 @@ t_bfs   *genEast(t_queue **queue, t_key *key, t_bfs *item)
             FUCKYEAH->parent = item;
             FUCKYEAH->y = item->y;
             FUCKYEAH->x = item->x + 1;
-            pushQueue(FUCKYEAH, queue);
+            pushQueue(FUCKYEAH, queue, key);
         }
     }
     return (NULL);
@@ -158,7 +162,7 @@ t_bfs   *genSouth(t_queue **queue, t_key *key, t_bfs *item)
             FUCKYEAH->parent = item;
             FUCKYEAH->y = item->y + 1;
             FUCKYEAH->x = item->x;
-            pushQueue(FUCKYEAH, queue);
+            pushQueue(FUCKYEAH, queue, key);
         }
     }
     return (NULL);
@@ -201,11 +205,10 @@ t_bfs   *bfs(t_bfs *entrance, t_key *key)
 
     i = 0;
     queue = NULL;
-    pushQueue(entrance, &queue);
+    pushQueue(entrance, &queue, key);
     while (isQueueEmpty(queue) != 1)
     {
         item = popQueue(&queue);
-        key->arr[item->y][item->x] = 0;
         while (i < 4)
         {
             if ((done = genSuccessor(&queue, i, key, item)) != NULL)
@@ -235,7 +238,9 @@ void    print_maze(t_key *key, t_bfs *solution)
     int i;
     int n;
     int steps;
+    int neg;
 
+    neg = ((int)key->key[1]) * -1;
     steps = 0;
     i = 0;
     n = 0;
@@ -249,7 +254,7 @@ void    print_maze(t_key *key, t_bfs *solution)
     {
         while (i < key->column)
         {
-            if (key->arr[n][i] == 0)
+            if (key->arr[n][i] == neg)
                 key->arr[n][i] = key->key[1];
             ft_putchar(key->arr[n][i]);
             i++;  
