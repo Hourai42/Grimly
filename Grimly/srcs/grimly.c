@@ -12,26 +12,28 @@
 
 #include "grimly.h"
 
-/* Program should be able to handle several labyrinth files. If no arguments are passed, then the program will read a(one) maze from stdin.
- * All errors will be displayed to stderr as "MAP ERROR" followed by a newline. 
- * Watch out for number of new lines expected after every output. */
-int main(int argc, char **argv)
-{
-    char *line;
-    int i;
+/*
+** Watch out for expected number of newlines after every file. Stder for
+** errors, read from stdin if no arguments.
+*/
 
-    i = 1;
-    line = 0;
-    if (argc > 1)
-    {
-        while (i < argc)
-            if (validmaze(open(argv[i++], O_RDONLY)) == -1)
-                write(2, "MAP ERROR\n", 10);
-    }
-    else
-    { 
-        if (validmaze(0) == -1)
-            write(2, "MAP ERROR\n", 10);
-    }
-    return (0);
+int			main(int argc, char **argv)
+{
+	char	*line;
+	int		i;
+
+	i = 1;
+	line = 0;
+	if (argc > 1)
+	{
+		while (i < argc)
+			if (validmaze(open(argv[i++], O_RDONLY)) == -1)
+				write(2, "MAP ERROR\n", 10);
+	}
+	else
+	{
+		if (validmaze(0) == -1)
+			write(2, "MAP ERROR\n", 10);
+	}
+	return (0);
 }
