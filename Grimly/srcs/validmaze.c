@@ -109,7 +109,7 @@ static void    value_checker(char c, t_key *key, int x, t_rs *s)
  * Check. */
 static int  v_rc(char *line, t_key *key, t_rs *s)
 {
-    char *row;
+    int *row;
     int i;
 
     i = 0;
@@ -120,7 +120,7 @@ static int  v_rc(char *line, t_key *key, t_rs *s)
         else
             return (-1);
     }
-    row = malloc(sizeof(char) * key->column);
+    row = malloc(sizeof(int) * key->column);
     while (line[i] && i < key->column)
     {
         row[i] = line[i];
@@ -153,7 +153,7 @@ static int valid_line(char *line, t_key *key, t_rs *s)
     {
         if (s->run == 1)
         {
-            key->arr = malloc(sizeof(char) * key->row);
+            key->arr = malloc(sizeof(int) * key->row);
             s->exits = 0;
             s->entrance = 0;
         }
@@ -188,8 +188,5 @@ int validmaze(int fd)
     free(s);
     if (solvemaze(key) == -1)
        return (-1);
-    free(key->key);
-    free(key->arr);
-    free(key);
     return (0);
 }

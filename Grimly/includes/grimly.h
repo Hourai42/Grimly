@@ -19,7 +19,7 @@ typedef struct s_key
     char *key;
     int row;
     int column;
-    char **arr;
+    int **arr;
     int startx;
     int starty;
 }               t_key;

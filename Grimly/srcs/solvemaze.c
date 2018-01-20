@@ -199,6 +199,7 @@ t_bfs   *bfs(t_bfs *entrance, t_key *key)
     int i;
     t_bfs *done;
 
+    i = 0;
     queue = NULL;
     pushQueue(entrance, &queue);
     while (isQueueEmpty(queue) != 1)
@@ -216,16 +217,64 @@ t_bfs   *bfs(t_bfs *entrance, t_key *key)
     return (NULL);
 }
 
-/* initQ for initialize queue */
+int    fixmap(t_key *key, t_bfs *solution, int steps)
+{
+    solution = solution->parent;
+    while (solution->parent != NULL)
+    {
+        key->arr[solution->y][solution->x] = key->key[2];
+        solution = solution->parent;
+        steps++;
+    }
+    key->arr[solution->y][solution->x] = key->key[3];
+    return (steps);
+}
+
+void    print_maze(t_key *key, t_bfs *solution)
+{
+    int i;
+    int n;
+    int steps;
+
+    steps = 0;
+    i = 0;
+    n = 0;
+    ft_putnbr(key->row);
+    ft_putchar('x');
+    ft_putnbr(key->column);
+    ft_putstr(key->key);
+    write(1, "\n", 1);
+    steps = fixmap(key, solution, steps);
+    while (n < key->row)
+    {
+        while (i < key->column)
+        {
+            if (key->arr[n][i] == 0)
+                key->arr[n][i] = key->key[1];
+            ft_putchar(key->arr[n][i]);
+            i++;  
+        }
+        write(1, "\n", 1);
+        i = 0;
+        n++;
+    }
+    ft_putstr("RESULT IN ");
+    ft_putnbr(steps);
+    ft_putstr(" STEPS!\n");
+}
+
 int solvemaze(t_key *key)
 {
     t_bfs *entrance;
+    t_bfs *solution;
     
+    solution = malloc(sizeof(t_bfs));
     entrance = malloc(sizeof(t_bfs));
     entrance->x = key->startx;
     entrance->y = key->starty;
     entrance->parent = NULL;
-    if (bfs(entrance, key) == NULL)
+    if ((solution = bfs(entrance, key)) == NULL)
         return (-1);
+    print_maze(key, solution);
     return (0);
 }
