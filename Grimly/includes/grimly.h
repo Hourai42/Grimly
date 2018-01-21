@@ -44,29 +44,20 @@ typedef struct		s_queue
 	struct s_bfs	*node;
 	struct s_queue	*next;
 }					t_queue;
-
-/* Functions to print result */
-void	print_check(t_key *key);
-void		print_maze(t_key *key, t_bfs *solution);
+void				print_check(t_key *key);
+void				print_maze(t_key *key, t_bfs *solution);
 int					fixmap(t_key *key, t_bfs *solution, int steps);
-
-/* Validation Checks */
 int					ft_matoi(char **line);
 int					dup_check(char *str);
 int					validmaze(int fd);
-void	value_checker(char c, t_key *key, int x, t_rs *s);
-
-/* The caller functions */
+int					valid_middle(t_key *key, char *line);
+void				value_checker(char c, t_key *key, int x, t_rs *s);
 int					main(int argc, char **argv);
 int					solvemaze(t_key *key);
-
-/* The functions to initialize the queue */
-void	push_queue(t_bfs *node, t_queue **queue, t_key *key);
-t_bfs	*pop_queue(t_queue **queue);
-int	isqueue_empty(t_queue *queue);
-
-/* Functions to transverse the maze */
+void				push_queue(t_bfs *node, t_queue **queue, t_key *key);
+t_bfs				*pop_queue(t_queue **queue);
+int					isqueue_empty(t_queue *queue);
 t_bfs				*bfs(t_bfs *entrance, t_key *key);
-t_bfs		*gen_succ(t_queue **queue, int direction, t_key *key, t_bfs *item);
-
+t_bfs				*gen_succ(t_queue **queue, int direction,
+					t_key *key, t_bfs *item);
 #endif

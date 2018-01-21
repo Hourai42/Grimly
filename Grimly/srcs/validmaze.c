@@ -61,22 +61,10 @@ static int	valid_row(t_key *key, char *line, t_rs *s)
 			i++;
 		}
 	else
-		while (line[i])
-		{
-			if (i == 0 || i == key->column - 1)
-			{
-				if (line[i] != key->key[0] && line[i] != key->key[3]
-				&& line[i] != key->key[4])
-					return (-1);
-			}
-			else
-			{
-				if (line[i] != key->key[0] && line[i] != key->key[1]
-				&& line[i] != key->key[3] && line[i] != key->key[4])
-					return (-1);
-			}
-			i++;
-		}
+	{
+		if (valid_middle(key, line) == -1)
+			return (-1);
+	}
 	return (0);
 }
 

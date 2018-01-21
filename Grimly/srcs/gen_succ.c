@@ -12,9 +12,9 @@
 
 #include "grimly.h"
 
-static t_bfs		*gen_north(t_queue **queue, t_key *key, t_bfs *item)
+static t_bfs	*gen_north(t_queue **queue, t_key *key, t_bfs *item)
 {
-	t_bfs	*fuckyeah;
+	t_bfs		*fuckyeah;
 
 	if (item->y > 0)
 	{
@@ -38,9 +38,9 @@ static t_bfs		*gen_north(t_queue **queue, t_key *key, t_bfs *item)
 	return (NULL);
 }
 
-static t_bfs		*gen_west(t_queue **queue, t_key *key, t_bfs *item)
+static t_bfs	*gen_west(t_queue **queue, t_key *key, t_bfs *item)
 {
-	t_bfs	*fuckyeah;
+	t_bfs		*fuckyeah;
 
 	if (item->x > 0)
 	{
@@ -64,9 +64,9 @@ static t_bfs		*gen_west(t_queue **queue, t_key *key, t_bfs *item)
 	return (NULL);
 }
 
-static t_bfs		*gen_east(t_queue **queue, t_key *key, t_bfs *item)
+static t_bfs	*gen_east(t_queue **queue, t_key *key, t_bfs *item)
 {
-	t_bfs	*fuckyeah;
+	t_bfs		*fuckyeah;
 
 	if (item->x < key->column - 1)
 	{
@@ -90,9 +90,9 @@ static t_bfs		*gen_east(t_queue **queue, t_key *key, t_bfs *item)
 	return (NULL);
 }
 
-static t_bfs		*gen_south(t_queue **queue, t_key *key, t_bfs *item)
+static t_bfs	*gen_south(t_queue **queue, t_key *key, t_bfs *item)
 {
-	t_bfs	*fuckyeah;
+	t_bfs		*fuckyeah;
 
 	if (item->y < key->row - 1)
 	{
@@ -116,9 +116,10 @@ static t_bfs		*gen_south(t_queue **queue, t_key *key, t_bfs *item)
 	return (NULL);
 }
 
-t_bfs		*gen_succ(t_queue **queue, int direction, t_key *key, t_bfs *item)
+t_bfs			*gen_succ(t_queue **queue, int direction,
+				t_key *key, t_bfs *item)
 {
-	t_bfs	*done;
+	t_bfs		*done;
 
 	if (direction == 0)
 	{

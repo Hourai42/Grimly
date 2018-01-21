@@ -12,6 +12,22 @@
 
 #include "grimly.h"
 
+static void	print_legend(t_key *key)
+{
+	ft_putnbr(key->row);
+	ft_putchar('x');
+	ft_putnbr(key->column);
+	ft_putstr(key->key);
+	write(1, "\n", 1);
+}
+
+static void	print_steps(int steps)
+{
+	ft_putstr("RESULT IN ");
+	ft_putnbr(steps);
+	ft_putstr(" STEPS!\n");
+}
+
 void		print_maze(t_key *key, t_bfs *solution)
 {
 	int		i;
@@ -23,11 +39,7 @@ void		print_maze(t_key *key, t_bfs *solution)
 	steps = 0;
 	i = 0;
 	n = 0;
-	ft_putnbr(key->row);
-	ft_putchar('x');
-	ft_putnbr(key->column);
-	ft_putstr(key->key);
-	write(1, "\n", 1);
+	print_legend(key);
 	steps = fixmap(key, solution, steps);
 	while (n < key->row)
 	{
@@ -42,7 +54,5 @@ void		print_maze(t_key *key, t_bfs *solution)
 		i = 0;
 		n++;
 	}
-	ft_putstr("RESULT IN ");
-	ft_putnbr(steps);
-	ft_putstr(" STEPS!\n");
+	print_steps(steps);
 }
