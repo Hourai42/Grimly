@@ -7,3 +7,5 @@ Next time, watch out when you malloc an int array. I can't believe the program w
 2. Instead of multiplying by *-1, you can simply set whatever you're putting into the queue to 0. Multiplying by -1 is a read, write, and modify operation while setting something to zero is just a write operation.  
 
 3. The rule of speed is to minimize function calls, iterations, and operations. 
+
+4. Rules for closing files? Well, just to be safe, you might as well close after you're done. 
