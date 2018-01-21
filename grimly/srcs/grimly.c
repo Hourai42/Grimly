@@ -34,7 +34,7 @@ int			main(int argc, char **argv)
 				write(2, "MAP ERROR\n", 10);
 			close(fd);
 		}
-	}		
+	}
 	else
 	{
 		if (validmaze(0) == -1)
