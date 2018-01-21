@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:23:21 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:23:22 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+t_bfs		*bfs(t_bfs *entrance, t_key *key)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
+	t_queue	*queue;
+	t_bfs	*item;
+	int		i;
+	t_bfs	*done;
 
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	i = 0;
+	queue = NULL;
+	push_queue(entrance, &queue, key);
+	while (isqueue_empty(queue) != 1)
+	{
+		item = pop_queue(&queue);
+		while (i < 4)
+		{
+			if ((done = gen_succ(&queue, i, key, item)) != NULL)
+				return (done);
+			i++;
+		}
+		i = 0;
+	}
+	return (NULL);
 }

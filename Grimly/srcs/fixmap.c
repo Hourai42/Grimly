@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   fixmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:21:30 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:21:31 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+int			fixmap(t_key *key, t_bfs *solution, int steps)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
-
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	solution = solution->parent;
+	while (solution->parent != NULL)
+	{
+		key->arr[solution->y][solution->x] = key->key[2];
+		solution = solution->parent;
+		steps++;
+	}
+	key->arr[solution->y][solution->x] = key->key[3];
+	return (steps);
 }

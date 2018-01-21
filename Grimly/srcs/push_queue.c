@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   push_queue.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:21:53 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:21:54 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+void	push_queue(t_bfs *node, t_queue **queue, t_key *key)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
+	t_queue	*newtail;
 
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	if (key->arr[node->y][node->x] > 0)
+	{
+		if (*queue == NULL)
+		{
+			*queue = malloc(sizeof(t_queue));
+			(*queue)->next = NULL;
+			(*queue)->node = node;
+		}
+		else
+		{
+			newtail = malloc(sizeof(t_queue));
+			newtail->next = *queue;
+			newtail->node = node;
+			*queue = newtail;
+		}
+		key->arr[node->y][node->x] *= -1;
+	}
 }

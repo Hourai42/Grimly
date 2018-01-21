@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   value_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:20:35 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:20:36 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+void	value_checker(char c, t_key *key, int x, t_rs *s)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
+	int		y;
 
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	y = s->run - 1;
+	if (c == key->key[3])
+	{
+		s->entrance++;
+		key->startx = x;
+		key->starty = y;
+	}
+	else if (c == key->key[4])
+		s->exits++;
 }

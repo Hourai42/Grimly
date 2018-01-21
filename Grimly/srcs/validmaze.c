@@ -12,19 +12,6 @@
 
 #include "grimly.h"
 
-static int	ft_matoi(char **line)
-{
-	int		num;
-
-	num = 0;
-	while (**line >= '0' && **line <= '9')
-	{
-		num = num * 10 + (**line - '0');
-		(*line)++;
-	}
-	return (num);
-}
-
 /*
 ** Validates the key required to read the labyrinth. Invalid key returns null.
 ** legend[0] == The "full" character
@@ -93,21 +80,6 @@ static int	valid_row(t_key *key, char *line, t_rs *s)
 	return (0);
 }
 
-static void	value_checker(char c, t_key *key, int x, t_rs *s)
-{
-	int		y;
-
-	y = s->run - 1;
-	if (c == key->key[3])
-	{
-		s->entrance++;
-		key->startx = x;
-		key->starty = y;
-	}
-	else if (c == key->key[4])
-		s->exits++;
-}
-
 static int	v_rc(char *line, t_key *key, t_rs *s)
 {
 	int		*row;
@@ -166,23 +138,6 @@ static int	valid_line(char *line, t_key *key, t_rs *s)
 		s->run++;
 	}
 	return (0);
-}
-void	print_check(t_key *key)
-{
-	int n;
-	int i;
-
-	n = 0;
-	i = 0;
-	while (n < key->row)
-	{
-		while (i < key->column)
-			ft_putchar(key->arr[n][i++]);
-		write(1, "\n", 1);
-		i = 0;
-		n++;
-	}
-	write(1, "\n", 1);
 }
 
 /*

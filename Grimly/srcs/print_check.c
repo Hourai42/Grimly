@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   print_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:19:11 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:19:13 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+void	print_check(t_key *key)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
+	int n;
+	int i;
 
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	n = 0;
+	i = 0;
+	while (n < key->row)
+	{
+		while (i < key->column)
+			ft_putchar(key->arr[n][i++]);
+		write(1, "\n", 1);
+		i = 0;
+		n++;
+	}
+	write(1, "\n", 1);
 }

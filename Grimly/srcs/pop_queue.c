@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvemaze.c                                        :+:      :+:    :+:   */
+/*   pop_queue.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttran <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 18:10:33 by ttran             #+#    #+#             */
-/*   Updated: 2018/01/19 18:10:34 by ttran            ###   ########.fr       */
+/*   Created: 2018/01/20 16:21:58 by ttran             #+#    #+#             */
+/*   Updated: 2018/01/20 16:21:59 by ttran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grimly.h"
 
-int			solvemaze(t_key *key)
+t_bfs	*pop_queue(t_queue **queue)
 {
-	t_bfs	*entrance;
-	t_bfs	*solution;
+	t_queue		*head;
+	t_queue		*fuckhead;
 
-	solution = malloc(sizeof(t_bfs));
-	entrance = malloc(sizeof(t_bfs));
-	entrance->x = key->startx;
-	entrance->y = key->starty;
-	entrance->parent = NULL;
-	if ((solution = bfs(entrance, key)) == NULL)
-		return (-1);
-	print_maze(key, solution);
-	return (0);
+	fuckhead = NULL;
+	head = *queue;
+	while (head->next != NULL)
+	{
+		fuckhead = head;
+		head = head->next;
+	}
+	if (fuckhead != NULL)
+		fuckhead->next = NULL;
+	else
+		*queue = NULL;
+	return (head->node);
 }

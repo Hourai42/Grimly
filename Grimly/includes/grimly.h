@@ -45,9 +45,28 @@ typedef struct		s_queue
 	struct s_queue	*next;
 }					t_queue;
 
-int					main(int argc, char **argv);
+/* Functions to print result */
+void	print_check(t_key *key);
+void		print_maze(t_key *key, t_bfs *solution);
+int					fixmap(t_key *key, t_bfs *solution, int steps);
+
+/* Validation Checks */
+int					ft_matoi(char **line);
 int					dup_check(char *str);
 int					validmaze(int fd);
+void	value_checker(char c, t_key *key, int x, t_rs *s);
+
+/* The caller functions */
+int					main(int argc, char **argv);
 int					solvemaze(t_key *key);
+
+/* The functions to initialize the queue */
+void	push_queue(t_bfs *node, t_queue **queue, t_key *key);
+t_bfs	*pop_queue(t_queue **queue);
+int	isqueue_empty(t_queue *queue);
+
+/* Functions to transverse the maze */
+t_bfs				*bfs(t_bfs *entrance, t_key *key);
+t_bfs		*gen_succ(t_queue **queue, int direction, t_key *key, t_bfs *item);
 
 #endif

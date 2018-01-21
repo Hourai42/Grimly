@@ -15,7 +15,9 @@ SRCS_DIR = ./srcs/
 INCLUDES = ./includes/
 RM = /bin/rm -f
 
-FILES = grimly dup_check validmaze solvemaze
+FILES = grimly dup_check validmaze solvemaze bfs fixmap ft_matoi gen_succ \
+			isqueue_empty pop_queue print_check push_queue print_maze \
+			value_checker
 CFILES = $(patsubst %, $(SRCS_DIR)%.c, $(FILES))
 OFILES = $(patsubst %, %.o, $(FILES))
 CFLAGS = -Wall -Wextra -Werror
