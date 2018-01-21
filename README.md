@@ -32,7 +32,7 @@ Completely unnoticeable difference from changing *-1 to setting to 0 instead.
 Possibly implementing a flag system or making sure it exists before mallocing. Or simply setting it to NULL everytime, so if you don't MALLOC it's just null. 
 [ ] 
 
-6. The rule of speed is to minimize function calls, iterations, and operations. 
+6. The rule of speed is to minimize function calls, iterations, and operations. You used way too many function calls and checks for what should have been an extremely simple validation. 
 
 7. LLDB USAGE: Add -g to compile flags, lldb -- (program name) (input), b main, run, gui, n for newline, s for side, h for help. 
 
