@@ -8,7 +8,9 @@ Next time, watch out when you malloc an int array. I can't believe the program w
 
 [x] Checked speed on *-1 vs setting to 0.  
 a. ./grimly tests/ted.map  1.67s user 0.56s system 90% cpu 2.466 total (1000 by 1000 labyrinth)
+
 b. ./grimly tests/ted.map  1.66s user 0.55s system 92% cpu 2.383 total
+
 Completely unnoticeable difference from changing *-1 to setting to 0 instead.
 
 3. The rule of speed is to minimize function calls, iterations, and operations. 
