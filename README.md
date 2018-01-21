@@ -27,3 +27,7 @@ Possibly implementing a flag system or making sure it exists before mallocing. O
 [o] No frees, apparently. 
 
 6. The rule of speed is to minimize function calls, iterations, and operations. 
+
+7. LLDB USAGE: Add -g to compile flags, lldb -- (program name) (input), b main, run, gui, n for newline, s for side, h for help. 
+
+8. leaks ./(program name) (input) to check for memory leaks
