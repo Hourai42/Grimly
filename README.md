@@ -5,6 +5,7 @@ Next time, watch out when you malloc an int array. I can't believe the program w
 1. Your Grimly is fairly slow because for one, your queue implementation is horrid. Instead of having a pointer to the tail and front ends of the queue, you only have a pointer to the tail(a regular linked list). Every time you wished to dequeue, you would simply iterate to the end of the list and pop whatever that was the end off. This is a very bad implementation and you should improve on it if you have time. Choosing the correct data structure as well as having the ideal implementation will greatly increase speed. 
 
 [x] Fixed linked list implementation. Possibly using global variables instead of storing the head in a struct might speed up the implementation quite a bit? You won't need to set the head every time you push a new node... But whatever, global variables aren't allowed.
+
 a. ./grimly tests/ted.map  1.55s user 0.54s system 97% cpu 2.138 total with incorrect linked list implementation
 
 b. ./grimly tests/ted.map  0.36s user 0.60s system 97% cpu 0.981 total with correct linked list implementation
