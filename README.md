@@ -22,4 +22,8 @@ Completely unnoticeable difference from changing *-1 to setting to 0 instead.
 
 [o] I won't be implementing this as it's an extremely minor memory improvement, but possibly a performance detriment. 
 
-5. The rule of speed is to minimize function calls, iterations, and operations. 
+5. Freeing everything you malloc will prevent memory leaks and free up valuable memory space. However, I can't risk freeing due to the way my program is structured. Everything is linked, so I have a high possibility of double freeing and segfaulting.
+Possibly implementing a flag system or making sure it exists before mallocing. Or simply setting it to NULL everytime, so if you don't MALLOC it's just null. 
+[o] No frees, apparently. 
+
+6. The rule of speed is to minimize function calls, iterations, and operations. 
