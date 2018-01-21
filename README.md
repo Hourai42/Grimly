@@ -2,6 +2,8 @@
 
 Next time, watch out when you malloc an int array. I can't believe the program worked with that error for most cases.
 
+When you want to do A*, you realize that you'll have to face your dread of utilizing unknown algorithms and data structures. But an array of structs is simple enough-- go for that next time. 
+
 1. Your Grimly is fairly slow because for one, your queue implementation is horrid. Instead of having a pointer to the tail and front ends of the queue, you only have a pointer to the tail(a regular linked list). Every time you wished to dequeue, you would simply iterate to the end of the list and pop whatever that was the end off. This is a very bad implementation and you should improve on it if you have time. Choosing the correct data structure as well as having the ideal implementation will greatly increase speed. 
 
 [x] Fixed linked list implementation. Possibly using global variables instead of storing the head in a struct might speed up the implementation quite a bit? You won't need to set the head every time you push a new node... But whatever, global variables aren't allowed.
