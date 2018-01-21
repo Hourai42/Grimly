@@ -13,8 +13,13 @@ b. ./grimly tests/ted.map  1.66s user 0.55s system 92% cpu 2.383 total
 
 Completely unnoticeable difference from changing *-1 to setting to 0 instead.
 
-3. The rule of speed is to minimize function calls, iterations, and operations. 
 
-4. Rules for closing files? Well, just to be safe, you might as well close after you're done. 
+3. Rules for closing files? Well, just to be safe, you might as well close after you're done. 
 
 [x] Closed files.
+
+4. Instead of using a 2D array, a 1D array is enough. If your key holds the number of row and columns, you can use the remainder and modulus operations to access whatever piece of information on the board you wish. 
+
+[o] I won't be implementing this as it's an extremely minor memory improvement, but possibly a performance detriment. 
+
+5. The rule of speed is to minimize function calls, iterations, and operations. 
