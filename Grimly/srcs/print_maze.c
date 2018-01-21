@@ -25,7 +25,7 @@ static void	print_steps(int steps)
 {
 	ft_putstr("RESULT IN ");
 	ft_putnbr(steps);
-	ft_putstr(" STEPS!\n");
+	ft_putstr(" STEPS!\n\n");
 }
 
 void		print_maze(t_key *key, t_bfs *solution)
