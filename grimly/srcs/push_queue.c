@@ -21,16 +21,19 @@ void	push_queue(t_bfs *node, t_queue **queue, t_key *key)
 		if (*queue == NULL)
 		{
 			*queue = malloc(sizeof(t_queue));
-			(*queue)->next = NULL;
+			(*queue)->prev = NULL;
 			(*queue)->node = node;
+			(*queue)->head = *queue;
 		}
 		else
 		{
 			newtail = malloc(sizeof(t_queue));
-			newtail->next = *queue;
+			newtail->head = (*queue)->head;
+			(*queue)->prev = newtail;
+			newtail->prev = NULL;
 			newtail->node = node;
 			*queue = newtail;
 		}
-		key->arr[node->y][node->x] *= -1;
+		key->arr[node->y][node->x] = 0;
 	}
 }

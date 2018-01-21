@@ -33,9 +33,7 @@ void		print_maze(t_key *key, t_bfs *solution)
 	int		i;
 	int		n;
 	int		steps;
-	int		neg;
 
-	neg = ((int)key->key[1]) * -1;
 	steps = 0;
 	i = 0;
 	n = 0;
@@ -45,7 +43,7 @@ void		print_maze(t_key *key, t_bfs *solution)
 	{
 		while (i < key->column)
 		{
-			if (key->arr[n][i] == neg)
+			if (key->arr[n][i] == 0)
 				key->arr[n][i] = key->key[1];
 			ft_putchar(key->arr[n][i]);
 			i++;

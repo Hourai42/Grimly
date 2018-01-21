@@ -12,21 +12,21 @@
 
 #include "grimly.h"
 
-t_bfs	*pop_queue(t_queue **queue)
+t_bfs *pop_queue(t_queue **queue)
 {
-	t_queue		*head;
-	t_queue		*fuckhead;
+	t_queue *fuckhead;
 
 	fuckhead = NULL;
-	head = *queue;
-	while (head->next != NULL)
+	if ((*queue)->head->prev == NULL)
 	{
-		fuckhead = head;
-		head = head->next;
-	}
-	if (fuckhead != NULL)
-		fuckhead->next = NULL;
-	else
+		fuckhead = *queue;
+		(*queue)->head = NULL; 
 		*queue = NULL;
-	return (head->node);
+	}
+	else
+	{
+		fuckhead = (*queue)->head;
+		(*queue)->head = (*queue)->head->prev;
+	}
+	return (fuckhead->node);
 }

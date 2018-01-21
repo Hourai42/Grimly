@@ -42,7 +42,8 @@ typedef struct		s_bfs
 typedef struct		s_queue
 {
 	struct s_bfs	*node;
-	struct s_queue	*next;
+	struct s_queue	*prev;
+	struct s_queue	*head;
 }					t_queue;
 void				print_check(t_key *key);
 void				print_maze(t_key *key, t_bfs *solution);
