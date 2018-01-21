@@ -157,7 +157,7 @@ static int	valid_line(char *line, t_key *key, t_rs *s)
 	{
 		if (s->run == 1)
 		{
-			key->arr = malloc(sizeof(int) * key->row);
+			key->arr = (int **)malloc(sizeof(int *) * key->row);
 			s->exits = 0;
 			s->entrance = 0;
 		}
@@ -166,6 +166,23 @@ static int	valid_line(char *line, t_key *key, t_rs *s)
 		s->run++;
 	}
 	return (0);
+}
+void	print_check(t_key *key)
+{
+	int n;
+	int i;
+
+	n = 0;
+	i = 0;
+	while (n < key->row)
+	{
+		while (i < key->column)
+			ft_putchar(key->arr[n][i++]);
+		write(1, "\n", 1);
+		i = 0;
+		n++;
+	}
+	write(1, "\n", 1);
 }
 
 /*
