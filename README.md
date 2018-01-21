@@ -4,6 +4,10 @@ Next time, watch out when you malloc an int array. I can't believe the program w
 
 1. Your Grimly is fairly slow because for one, your queue implementation is horrid. Instead of having a pointer to the tail and front ends of the queue, you only have a pointer to the tail(a regular linked list). Every time you wished to dequeue, you would simply iterate to the end of the list and pop whatever that was the end off. This is a very bad implementation and you should improve on it if you have time. Choosing the correct data structure as well as having the ideal implementation will greatly increase speed. 
 
+a. ./grimly tests/ted.map  1.55s user 0.54s system 97% cpu 2.138 total with incorrect linked list implementation
+
+b. ./grimly tests/ted.map  0.36s user 0.60s system 97% cpu 0.981 total with correct linked list implementation
+
 2. Instead of multiplying by *-1, you can simply set whatever you're putting into the queue to 0. Multiplying by -1 is a read, write, and modify operation while setting something to zero is just a write operation. 
 
 [x] Checked speed on *-1 vs setting to 0.  
